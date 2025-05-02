@@ -5,17 +5,13 @@ import AppFooter from "@/components/AppFooter.vue";
 </script>
 
 <template>
-  <AppHeader />
-
-  <main>
-    <RouterView />
-  </main>
-  
-  <AppFooter />
+  <div id="app">
+    <router-view />
+  </div>
 </template>
 
-<style>
-body {
-  padding-top: 75px;
+<script>
+export default {
+  name: "App"
 }
-</style>
+</script>
