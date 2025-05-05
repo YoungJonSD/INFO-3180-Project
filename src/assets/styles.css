@@ -1,0 +1,150 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  
+  .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+
+  .navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-brand {
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  
+  
+  .form-control:focus, .form-select:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  }
+  
+  
+  .profile-card {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .profile-header {
+    background: linear-gradient(to right, #ff758c, #ff7eb3);
+    padding: 2rem;
+    border-radius: 10px;
+    color: white;
+    margin-bottom: 2rem;
+  }
+
+  .btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0b5ed7;
+  }
+  
+  .btn-success {
+    background-color: #198754;
+    border-color: #198754;
+  }
+  
+  .btn-success:hover {
+    background-color: #157347;
+    border-color: #157347;
+  }
+  
+  .btn-outline-primary:hover {
+    background-color: #0d6efd;
+    color: white;
+  }
+  
+ 
+  .jumbotron {
+    background: linear-gradient(to bottom right, #ff9a9e, #fad0c4);
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 4rem 2rem;
+  }
+  
+  .jumbotron h1 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  
+  .jumbotron p {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .fa-heart {
+    color: #dc3545;
+  }
+  
+  .fa-heart-o {
+    color: #dc3545;
+  }
+  
+ 
+  .profile-details .card-header {
+    background: linear-gradient(to right, #11998e, #38ef7d);
+    color: white;
+    padding: 1.5rem;
+  }
+  
+ 
+  .favourites-report .nav-tabs .nav-link {
+    color: #0d6efd;
+  }
+  
+  .favourites-report .nav-tabs .nav-link.active {
+    font-weight: 600;
+    color: #0d6efd;
+    border-bottom: 2px solid #0d6efd;
+  }
+  
+
+  .footer {
+    margin-top: 3rem;
+    padding: 1.5rem 0;
+    background-color: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+  }
+  
+
+  @media (max-width: 768px) {
+    .jumbotron {
+      padding: 2rem 1rem;
+    }
+    
+    .profile-header {
+      padding: 1.5rem;
+    }
+    
+    .card-deck {
+      display: block;
+    }
+    
+    .card {
+      margin-bottom: 1rem;
+    }
+  }

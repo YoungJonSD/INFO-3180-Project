@@ -1,68 +1,92 @@
 <template>
-    <div class="login-form">
-      <h1>Login</h1>
-      <form @submit.prevent="handleLogin">
-        <label>Username:</label>
-        <input type="text" v-model="credentials.username" required />
-  
-        <label>Password:</label>
-        <input type="password" v-model="credentials.password" required />
-  
-        <button type="submit">Login</button>
-      </form>
-  
-      <p v-if="errorMessage" style="color: red;">{{ errorMessage }}</p>
+  <div class="login">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header bg-primary text-white text-center">
+            <h3>Jam-Date</h3>
+          </div>
+          <div class="card-body">
+            <form @submit.prevent="login">
+              <div class="mb-3">
+                <label for="username" class="form-label">Username:</label>
+                <input 
+                  type="text" 
+                  id="username" 
+                  v-model="credentials.username" 
+                  class="form-control" 
+                  required
+                />
+              </div>
+              
+              <div class="mb-3">
+                <label for="password" class="form-label">Password:</label>
+                <input 
+                  type="password" 
+                  id="password" 
+                  v-model="credentials.password" 
+                  class="form-control" 
+                  required
+                />
+              </div>
+              
+              <div class="alert alert-danger" v-if="error">
+                {{ error }}
+              </div>
+              
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Login</button>
+              </div>
+              
+              <div class="text-center mt-3">
+                <p>Forgot your password? Too bad.</p>
+              </div>
+              
+              <div class="d-flex justify-content-center mt-3">
+                <router-link to="/register" class="me-3">Register Date</router-link>
+                <router-link to="/profiles/favourites">View Reports</router-link>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-  </template>
-  
-  <script>
-  import apiClient from '../axios'
+  </div>
+</template>
 
-  
-  export default {
-    name: 'Login',
-    data() {
-      return {
-        credentials: {
-          username: '',
-          password: ''
-        },
-        errorMessage: ''
-      }
-    },
-    methods: {
-      async handleLogin() {
-        try {
-          const response = await apiClient.post('/auth/login', this.credentials)
+<script>
+import apiService from '@/services/api'
 
-  
-          // Save token (you can also use Vuex or Pinia)
-          localStorage.setItem('token', response.data.access_token)
-  
-          // Redirect after login
-          this.$router.push('/')
-        } catch (error) {
-          this.errorMessage = error.response?.data?.message || 'Login failed'
-          console.error(error)
-        }
+export default {
+  name: 'Login',
+  data() {
+    return {
+      credentials: {
+        username: '',
+        password: ''
+      },
+      error: null
+    }
+  },
+  methods: {
+    async login() {
+      try {
+        this.error = null
+        const response = await apiService.login(this.credentials)
+        
+      
+        localStorage.setItem('jwt', response.data.access_token)
+         localStorage.setItem('user', JSON.stringify(response.data.user))
+
+
+        window.dispatchEvent(new Event('auth-changed'))
+
+
+       this.$router.push('/')
+      } catch (error) {
+        this.error = error.response?.data?.error || 'Login failed. Please try again.'
       }
     }
   }
-  </script>
-  
-  <style scoped>
-  .login-form {
-    max-width: 400px;
-    margin: auto;
-    padding: 1rem;
-  }
-  input {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  button {
-    padding: 0.5rem 1rem;
-  }
-  </style>
-  
+}
+</script>

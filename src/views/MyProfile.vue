@@ -39,7 +39,7 @@
   </template>
   
   <script>
-  import apiClient from '../axios'
+  import apiService from '@/services/api'
   
   export default {
     name: 'MyProfile',

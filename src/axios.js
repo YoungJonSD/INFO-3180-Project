@@ -1,24 +1,21 @@
 import axios from 'axios'
 
-// Create an Axios instance
 const apiClient = axios.create({
-  baseURL: 'http://localhost:8080/api'
+  baseURL: 'http://localhost:8080/api',
+  withCredentials: true,
+  headers: {
+    'Content-Type': 'application/json'
+  }
 })
 
-// Intercept requests
+
 apiClient.interceptors.request.use((config) => {
   const token = localStorage.getItem('token')
-
-  // Don't attach token to login or register
-  const isAuthRoute = config.url.includes('/auth/login') || config.url.includes('/register')
-
-  if (token && !isAuthRoute) {
+  const skipAuthRoutes = ['/login', '/register']
+  if (token && !skipAuthRoutes.some(path => config.url.includes(path))) {
     config.headers.Authorization = `Bearer ${token}`
   }
-
   return config
-}, (error) => {
-  return Promise.reject(error)
 })
 
 export default apiClient
