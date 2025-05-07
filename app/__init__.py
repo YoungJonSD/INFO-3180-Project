@@ -18,7 +18,7 @@ def create_app(config_class=Config):
     app.config.from_object(config_class)
     
     jwt = JWTManager(app)
-    CORS(app, resources={r"/api/*": {"origins": ["http://localhost:8080", "http://localhost:5173"]}})
+    CORS(app, resources={r"/api/*": {"origins": ["https://jamdate-frontend-h4na.onrender.com"]}})
     db.init_app(app)
 
     with app.app_context():
