@@ -56,8 +56,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  // Fix here: Using an empty string instead of process.env.BASE_URL
-  history: createWebHashHistory(''),
+  history: createWebHistory(''),
   routes
 })
 
