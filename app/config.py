@@ -9,5 +9,11 @@ class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY', 'Som3$ec5etK*y')
     UPLOAD_FOLDER = os.environ.get('UPLOAD_FOLDER')
     JWT_SECRET_KEY = os.environ.get("JWT_SECRET_KEY")
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL', '').replace('postgres://', 'postgresql://')
-    SQLALCHEMY_TRACK_MODIFICATIONS = False # This is just here to suppress a warning from SQLAlchemy as it will soon be removed
+   
+    database_url = os.environ.get('DATABASE_URL')
+    if database_url:
+        # Render uses postgres://, SQLAlchemy needs postgresql://
+        SQLALCHEMY_DATABASE_URI = database_url.replace('postgres://', 'postgresql://')
+    else:
+        # Local development fallback
+        SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:info3180@localhost/jamdate'

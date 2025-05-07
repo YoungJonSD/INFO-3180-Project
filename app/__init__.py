@@ -21,6 +21,13 @@ def create_app(config_class=Config):
     CORS(app, resources={r"/api/*": {"origins": ["http://localhost:8080", "http://localhost:5173"]}})
     db.init_app(app)
 
+    with app.app_context():
+        try:
+            db.create_all()
+            print("Database tables created successfully!")
+        except Exception as e:
+            print(f"Error creating database tables: {e}")
+
     
     @app.before_first_request
     def create_tables():
