@@ -32,6 +32,15 @@ def create_app(config_class=Config):
     @app.before_first_request
     def create_tables():
         db.create_all()
+
+    
+    @app.route('/')
+    def index():
+        return jsonify({
+        'message': 'Welcome to Jam-Date API',
+        'status': 'online',
+        'version': '1.0'
+    })
     
     @app.route('/api/register', methods=['POST'])
     def register():
