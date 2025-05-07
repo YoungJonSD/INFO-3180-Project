@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/api';
+const API_URL = 'https://info-3180-project.onrender.com/api';
 
 
 const apiClient = axios.create({
